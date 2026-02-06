@@ -1,0 +1,13 @@
+.footer-link{
+  color: #cbd5e1;
+  text-decoration: none;
+}
+.footer-link:hover{
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-logo{
+  height: 58px;
+  width: auto;
+}

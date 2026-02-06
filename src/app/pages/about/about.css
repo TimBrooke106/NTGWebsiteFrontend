@@ -1,0 +1,155 @@
+/* HERO */
+.about-hero{
+  background: #1f1f1f;
+  padding: 110px 0 90px;
+}
+
+.about-hero-sub{
+  color: rgba(255,255,255,.75);
+  font-size: 1.05rem;
+}
+
+/* Image block (matches placeholder look) */
+.about-image{
+  width: 100%;
+  max-width: 720px;
+  height: 380px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e9ecef;
+}
+
+.about-image-placeholder{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Typography */
+.section-title{
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.section-sub{
+  color: #6c757d;
+  font-size: 1.05rem;
+}
+
+.trusted-title{
+  font-weight: 800;
+  font-size: 3.1rem;
+  letter-spacing: -0.02em;
+}
+
+.trusted-text{
+  color: #6c757d;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Mission */
+.mission-section{
+  background: #f6f6f6;
+  padding: 90px 0;
+}
+
+.mission-text{
+  max-width: 860px;
+  color: #6c757d;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* Core values cards */
+.value-card{
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 26px;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.05);
+}
+
+.value-title{
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.value-text{
+  color: #6c757d;
+  line-height: 1.7;
+}
+
+/* Why choose strip */
+.why-strip{
+  background: #f6f6f6;
+  padding: 90px 0;
+}
+
+.why-item{
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.why-badge{
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: #dc3545;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 0 auto 18px;
+}
+
+.why-title{
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.why-text{
+  color: #6c757d;
+  max-width: 320px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* CTA strip */
+.cta-strip{
+  background: #dc3545;
+  padding: 80px 0;
+}
+
+.cta-title{
+  color: #fff;
+  font-weight: 900;
+  font-size: 3.2rem;
+  letter-spacing: -0.02em;
+}
+
+.cta-text{
+  color: rgba(255,255,255,.85);
+  font-size: 1.05rem;
+}
+
+.cta-btn{
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* Responsive tweaks */
+@media (max-width: 991px){
+  .about-hero{ padding: 90px 0 70px; }
+  .section-title{ font-size: 2.4rem; }
+  .trusted-title{ font-size: 2.4rem; }
+  .cta-title{ font-size: 2.4rem; }
+  .about-image{ height: 320px; }
+}

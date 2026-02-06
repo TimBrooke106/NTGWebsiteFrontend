@@ -1,0 +1,133 @@
+/* HERO */
+
+.hero-section{
+    color: #1f1f1f;
+    background-color: #1f1f1f;
+}
+
+/* Service sections */
+.service-section{
+  padding:80px 0;
+}
+.service-h2{
+  font-weight:900;
+  font-size:3.2rem;
+  letter-spacing:-0.02em;
+  margin-bottom:18px;
+}
+.service-p{
+  color:#6c757d;
+  font-size:1.05rem;
+  line-height:1.85;
+  max-width: 620px;
+  margin-bottom: 26px;
+}
+
+/* Tick list like screenshot */
+.tick-list{
+  list-style:none;
+  padding:0;
+  margin:0 0 28px;
+}
+.tick-list li{
+  position:relative;
+  padding-left:44px;
+  margin-bottom:18px;
+  font-weight:600;
+  color:#343a40;
+}
+.tick-list li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:2px solid #dc3545;
+  color:#dc3545;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+}
+
+/* Grey image placeholders */
+.service-image{
+    width: 700px;
+    height: 10px;
+}
+
+/* Why section */
+.why-section{
+  background:#f4f4f4;
+  padding:90px 0;
+}
+.why-title{
+  font-weight:900;
+  font-size:3.1rem;
+  letter-spacing:-0.02em;
+}
+
+.why-card{
+  background:#fff;
+  border-radius:8px;
+  padding:26px 26px;
+  box-shadow: 0 14px 24px rgba(0,0,0,.08);
+}
+.why-card-title{
+  font-weight:900;
+  margin-bottom:10px;
+}
+.why-card-text{
+  color:#6c757d;
+  line-height:1.7;
+}
+
+/* CTA strip */
+.services-cta{
+  background:#dc3545;
+  padding:80px 0;
+}
+.cta-title{
+  color:#fff;
+  font-weight:900;
+  font-size:3.3rem;
+  letter-spacing:-0.02em;
+}
+.cta-sub{
+  color: rgba(255,255,255,.9);
+  font-size:1.1rem;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+@media (max-width: 991px){
+  .services-hero{ padding:95px 0 70px; }
+  .service-h2{ font-size:2.4rem; }
+  .why-title{ font-size:2.4rem; }
+  .cta-title{ font-size:2.4rem; }
+  .service-image{ height:280px; }
+}
+.image-placeholder {
+    margin-left: 0 !important;
+    margin-right: auto;
+
+    width: 700px;
+    height: 370px;
+    background-color: #6c757d; /* Bootstrap secondary-ish */
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    }
+
+.service-image {
+    width: auto;
+    height: auto;
+}

@@ -1,0 +1,52 @@
+.brand-mark{
+  width: 14px;
+  height: 14px;
+  border: 2px solid #dc3545;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.navbar .nav-link{
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,.8);
+}
+
+.navbar .nav-link:hover{
+  color: #fff;
+}
+
+.navbar .nav-link.active{
+  color: #dc3545 !important;
+}
+
+body{
+  padding-top: 88px;
+}
+
+.admin-ghost{
+  padding: 4px 16px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 6px;
+  background: transparent;
+  color: #cfd3d8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all .2s ease;
+}
+
+.admin-ghost:hover{
+  color: #fff;
+  border-color: #dc3545;
+  background-color: rgba(255,255,255,0.05);
+}
+
+.navbar-background{
+    background-color: #1f1f1f;
+}
+
+.brand-logo{
+  height: 58px;
+  width: auto;
+}
+

@@ -1,0 +1,228 @@
+<!-- HERO (matches screenshot) -->
+<section class="hero-dark pt-5 hero-section">
+  <div class="container py-5">
+    <div class="py-4">
+      <h1 class="display-4 fw-bold text-white mb-2">
+        Book <span class="text-danger">Skip Service</span>
+      </h1>
+      <p class="lead text-light mb-0 hero-sub">
+        Schedule your skip bin delivery with ease - Available for all customers
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FORM CARD -->
+<section class="bg-white py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-xl-8">
+        <div class="card shadow-sm border-0 booking-card">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="fw-bold mb-4">Booking Details</h3>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+              <!-- Row 1 -->
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <label class="form-label">Name <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    [class.is-invalid]="isInvalid('firstName')"
+                    placeholder="First name"
+                    formControlName="firstName" />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Surname <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    [class.is-invalid]="isInvalid('lastName')"
+                    placeholder="Last name"
+                    formControlName="lastName" />
+                </div>
+
+                <!-- Row 2 -->
+                <div class="col-md-6">
+                  <label class="form-label">Email <span class="text-danger">*</span></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    [class.is-invalid]="isInvalid('email')"
+                    placeholder="your.email@example.com"
+                    formControlName="email" />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Mobile <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    [class.is-invalid]="isInvalid('mobile')"
+                    placeholder="0400 000 000"
+                    formControlName="mobile" />
+                </div>
+
+                <!-- Address -->
+                <div class="col-12">
+                  <label class="form-label">Address <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    [class.is-invalid]="isInvalid('address')"
+                    placeholder="Delivery address"
+                    formControlName="address" />
+                </div>
+
+                <!-- Skip + Material -->
+                <div class="col-md-6">
+                  <label class="form-label">Skip Size <span class="text-danger">*</span></label>
+                  <select
+                    class="form-select"
+                    [class.is-invalid]="isInvalid('skipSize')"
+                    formControlName="skipSize">
+                    <option value="" disabled>Select skip size</option>
+                    <option value="2">2 Yard</option>
+                    <option value="4">4 Yard</option>
+                    <option value="6">6 Yard</option>
+                    <option value="8">8 Yard</option>
+                    <option value="12">12 Yard</option>
+                    <option value="14">14 Yard</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Material Type <span class="text-danger">*</span></label>
+                  <select
+                    class="form-select"
+                    [class.is-invalid]="isInvalid('materialType')"
+                    formControlName="materialType">
+                    <option value="" disabled>Select material type</option>
+                    <option value="general">General Waste</option>
+                    <option value="builders">Builders Waste</option>
+                    <option value="green">Green Waste</option>
+                    <option value="soil">Soil</option>
+                    <option value="concrete">Concrete</option>
+                  </select>
+                </div>
+
+                <!-- Preferred Date (inline calendar like screenshot) -->
+                <div class="col-12">
+                    <label class="form-label">Preferred Date <span class="text-danger">*</span></label>
+
+                    <div class="datepicker-wrap">
+                        <div class="datepicker-center">
+                          <ngb-datepicker
+                            formControlName="preferredDate"
+                            [minDate]="minDate"
+                            [markDisabled]="isDisabled">
+                          </ngb-datepicker>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time Slot -->
+                <div class="col-md-6">
+                  <label class="form-label">Preferred Time <span class="text-danger">*</span></label>
+
+                  <select
+                    class="form-select"
+                    formControlName="timeSlot"
+                    [class.is-invalid]="isInvalid('timeSlot')"
+                    [disabled]="!form.get('preferredDate')?.value">
+
+                    <option value="" disabled>
+                      {{ form.get('preferredDate')?.value ? 'Select time slot' : 'Select a date first' }}
+                    </option>
+
+                    <option *ngFor="let slot of availableSlots" [value]="slot">
+                      {{ slot }}
+                    </option>
+                  </select>
+
+                  <div class="form-text">Hourly slots from 08:00 to 12:00</div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="col-12">
+                  <label class="form-label">Additional Information</label>
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="Any special requirements or instructions..."
+                    formControlName="notes"></textarea>
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-danger btn-lg px-4">
+                    <span class="me-2">Submit Booking</span>
+                    <i class="bi bi-send"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES (3 cards under form, like screenshot) -->
+    <div class="row justify-content-center g-4 text-center mt-4">
+      <div class="col-lg-3 col-md-4 col-sm-10">
+        <div class="card feature-card border-0 shadow-sm text-center p-4">
+          <div class="feature-icon mx-auto mb-3">
+            <i class="bi bi-check2"></i>
+          </div>
+          <h5 class="fw-bold">Fast Delivery</h5>
+          <p class="text-muted mb-0">Same day delivery available for urgent bookings</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-10">
+        <div class="card feature-card border-0 shadow-sm text-center p-4">
+          <div class="feature-icon mx-auto mb-3">
+            <i class="bi bi-check2"></i>
+          </div>
+          <h5 class="fw-bold">Flexible Periods</h5>
+          <p class="text-muted mb-0">Choose your hire period to suit your project timeline</p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-10">
+        <div class="card feature-card border-0 shadow-sm text-center p-4">
+          <div class="feature-icon mx-auto mb-3">
+            <i class="bi bi-check2"></i>
+          </div>
+          <h5 class="fw-bold">Competitive Pricing</h5>
+          <p class="text-muted mb-0">Transparent pricing with no hidden fees or charges</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Success Modal -->
+<div class="modal fade" id="bookingSuccessModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-body text-center p-5">
+
+        <div class="mb-3">
+          <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+        </div>
+
+        <h4 class="fw-bold mb-2">Booking Submitted!</h4>
+        <p class="text-muted mb-4">
+          Your booking request has been received.  
+          We’ll contact you shortly to confirm availability.
+        </p>
+
+        <button class="btn btn-danger px-4" (click)="goHome()">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -38,7 +38,8 @@ export class AdminLoginComponent {
       this.http.post<any>(
         'https://ntgwebsitebackend.onrender.com/api/admin/login',
         this.form.value
-      ).subscribe({
+      )
+      .subscribe({
         next: (res) => {
           this.auth.setToken(res.token);
           this.router.navigate(['/owner-dashboard']);

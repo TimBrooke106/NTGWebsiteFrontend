@@ -35,15 +35,19 @@ export class AdminLoginComponent {
     }
 
     this.loading = true;
-    this.http.post<any>('/api/admin/login', this.form.value).subscribe({
-      next: (res) => {
-        this.auth.setToken(res.token);
-        this.router.navigate(['/owner-dashboard']);
-      },
-      error: () => {
-        this.error = 'Invalid username or password.';
-        this.loading = false;
-      }
-    });
+      this.http.post<any>(
+        'https://ntgwebsitebackend.onrender.com/api/admin/login',
+        this.form.value
+      ).subscribe({
+        next: (res) => {
+          this.auth.setToken(res.token);
+          this.router.navigate(['/owner-dashboard']);
+        },
+        error: (err) => {
+          this.error = 'Invalid username or password.';
+          this.loading = false;
+        }
+      });
+
   }
 }

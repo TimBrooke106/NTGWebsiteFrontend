@@ -25,7 +25,7 @@ type Booking = {
   templateUrl: './owner-dashboard.component.html'
 })
 export class OwnerDashboardComponent implements OnInit {
-  private API = environment.apiBaseUrl.replace(/\/$/, ''); // removes trailing slash safely
+  private API = environment.apiBaseUrl;
 
   bookings: Booking[] = [];
   stats = { totalBookings: 0, pending: 0, confirmed: 0 };
@@ -45,6 +45,7 @@ export class OwnerDashboardComponent implements OnInit {
 
   load() {
     this.loading = true;
+    this.cdr.detectChanges();
 
     this.http.get<any>(`${this.API}/api/bookings/admin/stats`).subscribe({
       next: (s) => {
@@ -104,6 +105,14 @@ export class OwnerDashboardComponent implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  badgeClass(status: string) {
+    switch (status) {
+      case 'Confirmed': return 'text-bg-success';
+      case 'Rejected': return 'text-bg-danger';
+      default: return 'text-bg-warning';
+    }
   }
 
   logout() {

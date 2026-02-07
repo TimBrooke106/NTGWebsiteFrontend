@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { NgbDatepicker, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepicker, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { BookingService } from '../../core/services/booking.service';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
-import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-
 
 @Component({
   selector: 'app-book-skip',
@@ -24,7 +22,12 @@ export class BookSkip {
   timeSlots = ['08:00', '09:00', '10:00', '11:00', '12:00'];
   availableSlots = [...this.timeSlots];
 
-  constructor(private fb: FormBuilder, private booking: BookingService, private router: Router, private calendar: NgbCalendar) {
+  constructor(
+    private fb: FormBuilder,
+    private booking: BookingService,
+    private router: Router,
+    private calendar: NgbCalendar
+  ) {
     this.minDate = this.calendar.getToday();
 
     this.form = this.fb.group({
@@ -33,10 +36,8 @@ export class BookSkip {
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', Validators.required],
       address: ['', Validators.required],
-      skipSize: ['', Validators.required],
-      materialType: ['', Validators.required],
       preferredDate: [null as NgbDateStruct | null, Validators.required],
-      timeSlot: ['', Validators.required], // ✅ NEW
+      timeSlot: ['', Validators.required],
       notes: ['']
     });
 
@@ -71,15 +72,11 @@ export class BookSkip {
     return false;
   };
 
-
-  // inside BookSkip component
   private isAfterNoonCutoff(): boolean {
     const now = new Date();
     const cutoffHour = 12; // 12:00
-    return now.getHours() >= cutoffHour; // 12:00+ blocks same-day
+    return now.getHours() >= cutoffHour;
   }
-
-
 
   private toISODateOnly(d: NgbDateStruct): string {
     const mm = String(d.month).padStart(2, '0');
@@ -94,7 +91,7 @@ export class BookSkip {
         this.availableSlots = this.timeSlots.filter(s => !booked.includes(s));
       },
       error: () => {
-        // if API fails, still allow selection (or choose to block)
+        // if API fails, still allow selection
         this.availableSlots = [...this.timeSlots];
       }
     });
@@ -115,7 +112,6 @@ export class BookSkip {
     }
   }
 
-
   onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -131,10 +127,8 @@ export class BookSkip {
       email: v.email,
       mobile: v.mobile,
       address: v.address,
-      skipSize: v.skipSize,
-      materialType: v.materialType,
-      preferredDate: this.toISODateOnly(d), // ✅ send date only
-      timeSlot: v.timeSlot,                 // ✅ send slot
+      preferredDate: this.toISODateOnly(d),
+      timeSlot: v.timeSlot,
       notes: v.notes
     };
 
@@ -148,10 +142,9 @@ export class BookSkip {
       },
       error: (err) => {
         console.error(err);
-        alert('Failed to submit booking. Please try again.');
+        alert(err?.error?.message || 'Failed to submit booking. Please try again.');
       }
     });
-
   }
 
   isInvalid(name: string) {
@@ -160,13 +153,12 @@ export class BookSkip {
   }
 
   goHome() {
-  const modalEl = document.getElementById('bookingSuccessModal');
-  if (modalEl) {
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    modal?.hide();
+    const modalEl = document.getElementById('bookingSuccessModal');
+    if (modalEl) {
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal?.hide();
+    }
+
+    this.router.navigate(['/']);
   }
-
-  this.router.navigate(['/']);
-}
-
 }

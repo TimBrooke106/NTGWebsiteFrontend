@@ -22,8 +22,8 @@
             <h3 class="fw-bold mb-4">Booking Details</h3>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-              <!-- Row 1 -->
               <div class="row g-4">
+                <!-- Name -->
                 <div class="col-md-6">
                   <label class="form-label">Name <span class="text-danger">*</span></label>
                   <input
@@ -33,6 +33,7 @@
                     formControlName="firstName" />
                 </div>
 
+                <!-- Surname -->
                 <div class="col-md-6">
                   <label class="form-label">Surname <span class="text-danger">*</span></label>
                   <input
@@ -42,7 +43,7 @@
                     formControlName="lastName" />
                 </div>
 
-                <!-- Row 2 -->
+                <!-- Email -->
                 <div class="col-md-6">
                   <label class="form-label">Email <span class="text-danger">*</span></label>
                   <input
@@ -53,6 +54,7 @@
                     formControlName="email" />
                 </div>
 
+                <!-- Mobile -->
                 <div class="col-md-6">
                   <label class="form-label">Mobile <span class="text-danger">*</span></label>
                   <input
@@ -72,51 +74,19 @@
                     formControlName="address" />
                 </div>
 
-                <!-- Skip + Material -->
-                <div class="col-md-6">
-                  <label class="form-label">Skip Size <span class="text-danger">*</span></label>
-                  <select
-                    class="form-select"
-                    [class.is-invalid]="isInvalid('skipSize')"
-                    formControlName="skipSize">
-                    <option value="" disabled>Select skip size</option>
-                    <option value="2">2 Yard</option>
-                    <option value="4">4 Yard</option>
-                    <option value="6">6 Yard</option>
-                    <option value="8">8 Yard</option>
-                    <option value="12">12 Yard</option>
-                    <option value="14">14 Yard</option>
-                  </select>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Material Type <span class="text-danger">*</span></label>
-                  <select
-                    class="form-select"
-                    [class.is-invalid]="isInvalid('materialType')"
-                    formControlName="materialType">
-                    <option value="" disabled>Select material type</option>
-                    <option value="general">General Waste</option>
-                    <option value="builders">Builders Waste</option>
-                    <option value="green">Green Waste</option>
-                    <option value="soil">Soil</option>
-                    <option value="concrete">Concrete</option>
-                  </select>
-                </div>
-
                 <!-- Preferred Date (inline calendar like screenshot) -->
                 <div class="col-12">
-                    <label class="form-label">Preferred Date <span class="text-danger">*</span></label>
+                  <label class="form-label">Preferred Date <span class="text-danger">*</span></label>
 
-                    <div class="datepicker-wrap">
-                        <div class="datepicker-center">
-                          <ngb-datepicker
-                            formControlName="preferredDate"
-                            [minDate]="minDate"
-                            [markDisabled]="isDisabled">
-                          </ngb-datepicker>
-                        </div>
+                  <div class="datepicker-wrap">
+                    <div class="datepicker-center">
+                      <ngb-datepicker
+                        formControlName="preferredDate"
+                        [minDate]="minDate"
+                        [markDisabled]="isDisabled">
+                      </ngb-datepicker>
                     </div>
+                  </div>
                 </div>
 
                 <!-- Time Slot -->
@@ -166,7 +136,7 @@
       </div>
     </div>
 
-    <!-- FEATURES (3 cards under form, like screenshot) -->
+    <!-- FEATURES -->
     <div class="row justify-content-center g-4 text-center mt-4">
       <div class="col-lg-3 col-md-4 col-sm-10">
         <div class="card feature-card border-0 shadow-sm text-center p-4">
@@ -214,7 +184,7 @@
 
         <h4 class="fw-bold mb-2">Booking Submitted!</h4>
         <p class="text-muted mb-4">
-          Your booking request has been received.  
+          Your booking request has been received.
           We’ll contact you shortly to confirm availability.
         </p>
 
@@ -225,4 +195,3 @@
     </div>
   </div>
 </div>
-

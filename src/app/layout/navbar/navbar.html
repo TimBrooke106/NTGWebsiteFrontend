@@ -25,25 +25,19 @@
     <div #mainNav class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-gap me-4">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active"
-             [routerLinkActiveOptions]="{ exact: true }"
-             (click)="closeNavbar()">Home</a>
+          <a class="nav-link" (click)="go('/')">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active"
-             (click)="closeNavbar()">About</a>
+          <a class="nav-link" (click)="go('/about')">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/services" routerLinkActive="active"
-             (click)="closeNavbar()">Services</a>
+          <a class="nav-link" (click)="go('/services')">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/book-skip" routerLinkActive="active"
-             (click)="closeNavbar()">Book Skip</a>
+          <a class="nav-link" (click)="go('/book-skip')">Book Skip</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact" routerLinkActive="active"
-             (click)="closeNavbar()">Contact</a>
+          <a class="nav-link" (click)="go('/contact')">Contact</a>
         </li>
       </ul>
     </div>

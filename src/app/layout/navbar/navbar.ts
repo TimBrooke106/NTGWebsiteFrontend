@@ -1,6 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Collapse } from 'bootstrap';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +9,8 @@ import { Collapse } from 'bootstrap';
   styleUrls: ['./navbar.css']
 })
 export class NavbarComponent {
-  @ViewChild('mainNav', { static: true }) mainNav!: ElementRef<HTMLElement>;
-
-  closeNavbar() {
-    // Only close if it's currently shown (mobile state)
-    if (this.mainNav.nativeElement.classList.contains('show')) {
-      const instance = Collapse.getOrCreateInstance(this.mainNav.nativeElement);
-      instance.hide();
-    }
+  go(path: string) {
+    // full page load (like a refresh) to the new route
+    window.location.href = path;
   }
 }

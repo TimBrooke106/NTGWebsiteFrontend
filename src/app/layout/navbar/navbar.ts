@@ -7,7 +7,7 @@ import { filter } from 'rxjs/operators';
   selector: 'app-navbar',
   templateUrl: './navbar.html'
 })
-export class NavbarComponent {
+export class navbar {
   @ViewChild('mainNavCollapse', { static: false }) mainNavCollapse?: ElementRef<HTMLElement>;
 
   constructor(private router: Router) {

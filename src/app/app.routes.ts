@@ -15,6 +15,6 @@ export const routes: Routes = [
   { path: 'contact', component: Contact },
   { path: 'book-skip', component: BookSkip },
   { path: 'services', component: Services },
-  { path: 'admin', component: AdminLoginComponent },
-  { path: 'owner-dashboard', canActivate: [AdminGuard], component: OwnerDashboardComponent }
+  { path: 'login', component: AdminLoginComponent },
+  { path: 'admin', canActivate: [AdminGuard], component: OwnerDashboardComponent }
 ];

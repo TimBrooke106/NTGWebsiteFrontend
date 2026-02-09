@@ -149,7 +149,10 @@ export class OwnerDashboardComponent implements OnInit {
 
   logout() {
     this.http.post(`${this.API}/api/admin/logout`, {}).subscribe({
-      complete: () => this.auth.logout()
+        next: (res) => {
+          this.router.navigate(['/login']);
+        },
+        complete: () => this.auth.logout()
     });
   }
 }

@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { NavbarComponent } from "../navbar/navbar";
+import { Footer } from "../footer/footer";
 
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavbarComponent, Footer],
   templateUrl: './shell.html',
   styleUrls: ['./shell.css']
 })

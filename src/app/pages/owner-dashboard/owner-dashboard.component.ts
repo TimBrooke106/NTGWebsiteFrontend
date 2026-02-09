@@ -76,36 +76,68 @@ export class OwnerDashboardComponent implements OnInit {
     });
   }
 
-  updateStatus(id: number, status: 'Confirmed' | 'Rejected') {
-    if (status === 'Rejected' && !confirm('Reject this booking?')) return;
+    updateStatus(id: number, status: 'Confirmed' | 'Rejected') {
+    if (status === 'Rejected') {
+        if (!confirm('Reject and delete this booking?')) return;
 
+        this.updatingId = id;
+
+        this.http.delete(`/api/bookings/admin/${id}`).subscribe({
+        next: () => {
+            // remove from UI
+            this.bookings = this.bookings.filter(b => b.id !== id);
+
+            // refresh stats
+            this.http.get<any>('/api/bookings/admin/stats').subscribe(s => {
+            this.stats = {
+                totalBookings: s.totalBookings ?? 0,
+                pending: s.pending ?? 0,
+                confirmed: s.confirmed ?? 0
+            };
+            });
+
+            this.updatingId = null;
+            this.cdr.detectChanges();
+        },
+        error: (err) => {
+            console.error('Delete booking error', err);
+            this.updatingId = null;
+            alert(err?.error?.message || 'Failed to delete booking.');
+            this.cdr.detectChanges();
+        }
+        });
+
+        return;
+    }
+
+    // Confirm = keep your existing PUT logic
     this.updatingId = id;
 
-    this.http.put(`${this.API}/api/bookings/admin/${id}/status`, { status }).subscribe({
-      next: () => {
+    this.http.put(`/api/bookings/admin/${id}/status`, { status }).subscribe({
+        next: () => {
         const b = this.bookings.find(x => x.id === id);
         if (b) b.status = status;
 
-        this.http.get<any>(`${this.API}/api/bookings/admin/stats`).subscribe(s => {
-          this.stats = {
+        this.http.get<any>('/api/bookings/admin/stats').subscribe(s => {
+            this.stats = {
             totalBookings: s.totalBookings ?? 0,
             pending: s.pending ?? 0,
             confirmed: s.confirmed ?? 0
-          };
-          this.cdr.detectChanges();
+            };
         });
 
         this.updatingId = null;
         this.cdr.detectChanges();
-      },
-      error: (err) => {
+        },
+        error: (err) => {
         console.error('Update status error', err);
         this.updatingId = null;
         alert('Failed to update status.');
         this.cdr.detectChanges();
-      }
+        }
     });
-  }
+    }
+
 
   badgeClass(status: string) {
     switch (status) {

@@ -6,6 +6,11 @@
   display: inline-block;
 }
 
+body {
+  padding-top: 88px; /* adjust (72–96px) to match your navbar */
+}
+
+
 .navbar .nav-link{
   font-weight: 600;
   font-size: 0.9rem;

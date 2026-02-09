@@ -1,11 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import * as bootstrap from 'bootstrap';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.html'
+  templateUrl: './navbar.html',
+  imports: [RouterModule]
 })
 export class NavbarComponent {
   @ViewChild('mainNavCollapse', { static: false }) mainNavCollapse?: ElementRef<HTMLElement>;

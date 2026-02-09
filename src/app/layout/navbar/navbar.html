@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark py-3 border-secondary fixed-top navbar-background">
   <div class="container">
-
+    <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center gap-3" routerLink="/">
       <img src="/logo.png" class="brand-logo" alt="NTG Logo">
       <span class="fw-semibold fs-4">
@@ -8,6 +8,7 @@
       </span>
     </a>
 
+    <!-- Mobile toggle -->
     <button
       class="navbar-toggler"
       type="button"
@@ -19,40 +20,56 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- add #mainNavCollapse -->
-    <div class="collapse navbar-collapse" id="mainNav" #mainNavCollapse>
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-gap me-4">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" routerLinkActiveOptions="{ exact: true }"
-             (click)="closeMobileMenu()">
+          <a class="nav-link"
+             routerLink="/"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             data-bs-toggle="collapse"
+             data-bs-target="#mainNav">
             Home
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active"
-             (click)="closeMobileMenu()">
+          <a class="nav-link"
+             routerLink="/about"
+             routerLinkActive="active"
+             data-bs-toggle="collapse"
+             data-bs-target="#mainNav">
             About
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/services" routerLinkActive="active"
-             (click)="closeMobileMenu()">
+          <a class="nav-link"
+             routerLink="/services"
+             routerLinkActive="active"
+             data-bs-toggle="collapse"
+             data-bs-target="#mainNav">
             Services
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/book-skip" routerLinkActive="active"
-             (click)="closeMobileMenu()">
+          <a class="nav-link"
+             routerLink="/book-skip"
+             routerLinkActive="active"
+             data-bs-toggle="collapse"
+             data-bs-target="#mainNav">
             Book Skip
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact" routerLinkActive="active"
-             (click)="closeMobileMenu()">
+          <a class="nav-link"
+             routerLink="/contact"
+             routerLinkActive="active"
+             data-bs-toggle="collapse"
+             data-bs-target="#mainNav">
             Contact
           </a>
         </li>

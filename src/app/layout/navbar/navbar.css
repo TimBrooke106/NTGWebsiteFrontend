@@ -59,3 +59,35 @@ body {
   scroll-padding-top: 80px; /* adjust to navbar height */
 }
 
+
+/* Brand container */
+.ntg-brand {
+  gap: 8px; /* controls space between logo and text */
+}
+
+/* Logo sizing */
+.brand-logo {
+  height: 38px;     /* desktop size */
+  width: auto;
+}
+
+/* Text next to logo */
+.brand-text {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .brand-logo {
+    height: 32px;
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
+  }
+}
+.brand-logo {
+  height: 40px;
+}
+

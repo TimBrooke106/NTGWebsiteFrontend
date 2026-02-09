@@ -42,7 +42,7 @@ export class AdminLoginComponent {
       .subscribe({
         next: (res) => {
           this.auth.setToken(res.token);
-          this.router.navigate(['/owner-dashboard']);
+          this.router.navigate(['/admin']);
         },
         error: (err) => {
           this.error = 'Invalid username or password.';

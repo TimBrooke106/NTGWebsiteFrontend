@@ -1,12 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark py-3 border-secondary fixed-top navbar-background">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-3" routerLink="/" (click)="closeMobileMenu()">
-      <img src="/logo.png" class="brand-logo" alt="NTG Logo">
-      <span class="fw-semibold fs-4">
-        NTG <span class="text-danger fw-bold">Excavations</span>
-      </span>
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-3" routerLink="/">
+        <img src="/logo.png" class="brand-logo" alt="NTG Logo">
+        <span class="fw-semibold fs-4">
+            NTG <span class="text-danger fw-bold">Excavations</span>
+        </span>
     </a>
 
+
+    <!-- Mobile toggle -->
     <button
       class="navbar-toggler"
       type="button"
@@ -18,35 +21,33 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- ADD #mainNavCollapse -->
-    <div class="collapse navbar-collapse" id="mainNav" #mainNavCollapse>
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-gap me-4">
         <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active"
-             [routerLinkActiveOptions]="{ exact: true }"
-             (click)="closeMobileMenu()">Home</a>
+             [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active"
-             (click)="closeMobileMenu()">About</a>
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" routerLink="/services" routerLinkActive="active"
-             (click)="closeMobileMenu()">Services</a>
+          <a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" routerLink="/book-skip" routerLinkActive="active"
-             (click)="closeMobileMenu()">Book Skip</a>
+          <a class="nav-link" routerLink="/book-skip" routerLinkActive="active">Book Skip</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact" routerLinkActive="active"
-             (click)="closeMobileMenu()">Contact</a>
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
         </li>
       </ul>
+
+      <!-- Right-side actions
+        <div class="d-flex">
+            <a class="btn admin-ghost" routerLink="/owner-dashboard">Admin</a>
+        </div>
+        -->
+
     </div>
   </div>
 </nav>

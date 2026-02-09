@@ -55,3 +55,7 @@ body{
   width: auto;
 }
 
+body {
+  scroll-padding-top: 80px; /* adjust to navbar height */
+}
+

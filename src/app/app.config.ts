@@ -6,10 +6,10 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-     provideRouter(
+    provideRouter(
       routes,
       withInMemoryScrolling({
-        scrollPositionRestoration: 'top', // 👈 THIS
+        scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled'
       })
     )

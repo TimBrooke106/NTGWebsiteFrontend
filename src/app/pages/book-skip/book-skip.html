@@ -97,8 +97,8 @@
                     class="form-select"
                     formControlName="timeSlot"
                     [class.is-invalid]="isInvalid('timeSlot')"
-                    [disabled]="!form.get('preferredDate')?.value">
-
+                    [disabled]="!form.get('preferredDate')?.value || availableSlots.length === 0">
+                    
                     <option value="" disabled>
                       {{ form.get('preferredDate')?.value ? 'Select time slot' : 'Select a date first' }}
                     </option>

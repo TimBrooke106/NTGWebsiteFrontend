@@ -117,3 +117,16 @@
   transform: translateY(-6px);
   box-shadow: 0 20px 30px rgba(0,0,0,.12);
 }
+
+
+.time-slot-btn {
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 10px 0;
+}
+
+.time-slot-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}

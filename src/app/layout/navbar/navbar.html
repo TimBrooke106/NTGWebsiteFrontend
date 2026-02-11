@@ -1,51 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-dark py-3 border-secondary fixed-top navbar-background">
+<nav class="navbar navbar-expand-lg navbar-dark py-3 fixed-top navbar-background shadow-sm backdrop-blur">
   <div class="container">
 
     <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/" (click)="closeNavbar()">
+    <a class="navbar-brand d-flex align-items-center gap-2" 
+       routerLink="/" 
+       routerLinkActive="active-brand"
+       [routerLinkActiveOptions]="{ exact: true }"
+       (click)="closeNavbar()">
       <img
         src="/assets/images/NTGLogo.svg"
         alt="NTG Logo"
-        class="d-inline-block align-text-top"
         style="height:70px;width:auto;"
       />
       <span class="fw-bold text-danger fs-4 lh-1">Excavations</span>
     </a>
-
-
 
     <!-- Mobile toggle -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#mainNav"
-      aria-controls="mainNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
+      data-bs-target="#mainNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Links -->
-    <div #mainNav class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-gap me-4">
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-4">
+
         <li class="nav-item">
-          <a class="nav-link" (click)="go('/')">Home</a>
+          <a class="nav-link"
+             routerLink="/"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }">
+             Home
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" (click)="go('/about')">About</a>
+          <a class="nav-link"
+             routerLink="/about"
+             routerLinkActive="active">
+             About
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" (click)="go('/services')">Services</a>
+          <a class="nav-link"
+             routerLink="/services"
+             routerLinkActive="active">
+             Services
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" (click)="go('/book-skip')">Book Skip</a>
+          <a class="nav-link"
+             routerLink="/book-skip"
+             routerLinkActive="active">
+             Book Skip
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" (click)="go('/contact')">Contact</a>
+          <a class="nav-link"
+             routerLink="/contact"
+             routerLinkActive="active">
+             Contact
+          </a>
         </li>
+
       </ul>
     </div>
-
   </div>
 </nav>

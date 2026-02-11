@@ -58,3 +58,41 @@ body{
 body {
   scroll-padding-top: 80px; /* adjust to navbar height */
 }
+
+
+/* Smooth transition */
+.navbar .nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+/* Hover effect */
+.navbar .nav-link:hover {
+  color: #dc3545 !important; /* Bootstrap danger red */
+}
+
+/* Underline animation */
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #dc3545;
+  transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active page */
+.navbar .nav-link.active {
+  color: #dc3545 !important;
+}
+
+.navbar .nav-link.active::after {
+  width: 100%;
+}

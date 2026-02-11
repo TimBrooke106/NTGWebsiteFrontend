@@ -89,27 +89,58 @@
                   </div>
                 </div>
 
-                <!-- Time Slot -->
-                <div class="col-md-6">
+                <!-- Preferred Time (button/pill selector) -->
+                <div class="col-12">
                   <label class="form-label">Preferred Time <span class="text-danger">*</span></label>
 
-                  <select
-                    class="form-select"
-                    formControlName="timeSlot"
-                    [class.is-invalid]="isInvalid('timeSlot')"
-                    [disabled]="!form.get('preferredDate')?.value || availableSlots.length === 0">
+                  <!-- No date selected -->
+                  <div
+                    *ngIf="!form.get('preferredDate')?.value"
+                    class="alert alert-light border d-flex align-items-center gap-2 py-2 mb-2">
+                    <i class="bi bi-calendar-event text-danger"></i>
+                    <span class="small">Select a date first to see available times.</span>
+                  </div>
+
+                  <!-- Date selected but no available slots -->
+                  <div
+                    *ngIf="form.get('preferredDate')?.value && availableSlots.length === 0"
+                    class="alert alert-warning d-flex align-items-center gap-2 py-2 mb-2">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span class="small">No slots available for this date. Please choose another date.</span>
+                  </div>
+
+                  <!-- Slot buttons -->
+                  <div
+                    *ngIf="form.get('preferredDate')?.value && availableSlots.length > 0"
+                    class="d-flex flex-wrap gap-2">
                     
-                    <option value="" disabled>
-                      {{ form.get('preferredDate')?.value ? 'Select time slot' : 'Select a date first' }}
-                    </option>
+                    <input
+                      *ngFor="let slot of availableSlots; let i = index"
+                      type="radio"
+                      class="btn-check"
+                      name="timeSlot"
+                      [id]="'slot-' + i"
+                      [value]="slot"
+                      formControlName="timeSlot" />
 
-                    <option *ngFor="let slot of availableSlots" [value]="slot">
+                    <label
+                      *ngFor="let slot of availableSlots; let i = index"
+                      class="btn btn-outline-danger btn-sm rounded-pill px-3"
+                      [for]="'slot-' + i">
                       {{ slot }}
-                    </option>
-                  </select>
+                    </label>
+                  </div>
 
-                  <div class="form-text">Hourly slots from 08:00 to 12:00</div>
+                  <!-- Validation -->
+                  <div *ngIf="isInvalid('timeSlot')" class="invalid-feedback d-block">
+                    Please select a preferred time.
+                  </div>
+
+                  <div class="form-text">
+                    Weekdays: 07:00–16:00 (30 min) · Saturdays: 08:00–12:00 (30 min)
+                  </div>
                 </div>
+
 
                 <!-- Additional Information -->
                 <div class="col-12">

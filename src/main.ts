@@ -25,3 +25,9 @@ bootstrapApplication(App, {
     { provide: HTTP_INTERCEPTORS, useClass: AdminTokenInterceptor, multi: true },
   ],
 });
+
+
+console.log(
+  "%cWebsite developed by Timothy Brooke",
+  "color: #dc3545; font-size: 16px; font-weight: bold;"
+);

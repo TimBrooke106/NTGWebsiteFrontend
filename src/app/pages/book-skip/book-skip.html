@@ -114,12 +114,9 @@
                   <!-- Time Grid -->
                   <div
                     *ngIf="form.get('preferredDate')?.value && availableSlots.length > 0"
-                    class="row g-2">
+                    class="row g-1">
 
-                    <div
-                      class="col-6 col-md-4 col-lg-3"
-                      *ngFor="let slot of availableSlots">
-
+                    <div class="col-4 col-md-3 col-lg-2" *ngFor="let slot of availableSlots">
                       <button
                         type="button"
                         class="btn w-100 time-slot-btn"

@@ -1,78 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark py-3 fixed-top navbar-background shadow-sm backdrop-blur">
+<nav class="navbar navbar-expand-lg navbar-dark py-3 fixed-top navbar-background shadow-sm">
   <div class="container">
 
-    <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center gap-2" 
-       routerLink="/" 
-       routerLinkActive="active-brand"
-       [routerLinkActiveOptions]="{ exact: true }"
-       (click)="closeNavbar()">
-      <img
-        src="/assets/images/NTGLogo.svg"
-        alt="NTG Logo"
-        style="height:70px;width:auto;"
-      />
+    <a class="navbar-brand d-flex align-items-center gap-2"
+       routerLink="/"
+       (click)="onNavItemClick()">
+      <img src="/assets/images/NTGLogo.svg" alt="NTG Logo" style="height:70px;width:auto;" />
       <span class="fw-bold text-danger fs-4 lh-1">Excavations</span>
     </a>
 
-    <!-- Mobile toggle -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mainNav"
-      aria-controls="mainNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="mainNav">
+    <!-- IMPORTANT: id must match data-bs-target -->
+    <div class="collapse navbar-collapse" id="mainNav" #navCollapse>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-4">
 
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/"
-             routerLinkActive="active"
-             [routerLinkActiveOptions]="{ exact: true }">
-             Home
-          </a>
+          <a class="nav-link" routerLink="/" routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             (click)="onNavItemClick()">Home</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/about"
-             routerLinkActive="active">
-             About
-          </a>
+          <a class="nav-link" routerLink="/about" routerLinkActive="active"
+             (click)="onNavItemClick()">About</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/services"
-             routerLinkActive="active">
-             Services
-          </a>
+          <a class="nav-link" routerLink="/services" routerLinkActive="active"
+             (click)="onNavItemClick()">Services</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/book-skip"
-             routerLinkActive="active">
-             Book Skip
-          </a>
+          <a class="nav-link" routerLink="/book-skip" routerLinkActive="active"
+             (click)="onNavItemClick()">Book Skip</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/contact"
-             routerLinkActive="active">
-             Contact
-          </a>
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active"
+             (click)="onNavItemClick()">Contact</a>
         </li>
 
       </ul>
     </div>
+
   </div>
 </nav>

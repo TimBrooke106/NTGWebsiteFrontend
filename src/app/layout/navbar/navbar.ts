@@ -10,21 +10,17 @@ import { Collapse } from 'bootstrap';
   styleUrls: ['./navbar.css']
 })
 export class NavbarComponent {
-  @ViewChild('mainNav', { static: true }) mainNav!: ElementRef<HTMLElement>;
+  @ViewChild('navCollapse', { static: true }) navCollapse!: ElementRef<HTMLElement>;
 
-  go(path: string) {
-    // full page load (like a refresh) to the new route
-    window.location.href = path;
-  }
+  onNavItemClick() {
+    // Only collapse on mobile (when toggler is visible)
+    const togglerVisible = window.getComputedStyle(
+      document.querySelector('.navbar-toggler') as HTMLElement
+    ).display !== 'none';
 
-  @ViewChild('navCollapse') navCollapse!: ElementRef;
+    if (!togglerVisible) return;
 
-  closeNavbar() {
-    const el = this.navCollapse?.nativeElement;
-    if (!el) return;
-
-    // Bootstrap 5 collapse instance
-    const bsCollapse = (window as any).bootstrap?.Collapse?.getOrCreateInstance(el);
-    bsCollapse?.hide();
+    const bsCollapse = Collapse.getOrCreateInstance(this.navCollapse.nativeElement);
+    bsCollapse.hide();
   }
 }

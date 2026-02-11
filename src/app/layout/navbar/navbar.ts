@@ -17,11 +17,14 @@ export class NavbarComponent {
     window.location.href = path;
   }
 
+  @ViewChild('navCollapse') navCollapse!: ElementRef;
+
   closeNavbar() {
-    // Only close if it's currently shown (mobile state)
-    if (this.mainNav.nativeElement.classList.contains('show')) {
-      const instance = Collapse.getOrCreateInstance(this.mainNav.nativeElement);
-      instance.hide();
-    }
+    const el = this.navCollapse?.nativeElement;
+    if (!el) return;
+
+    // Bootstrap 5 collapse instance
+    const bsCollapse = (window as any).bootstrap?.Collapse?.getOrCreateInstance(el);
+    bsCollapse?.hide();
   }
 }

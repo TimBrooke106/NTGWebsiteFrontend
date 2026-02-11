@@ -9,6 +9,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminTokenInterceptor } from './app/core/interceptors/admin-token.interceptor';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 bootstrapApplication(App, {
   providers: [

@@ -76,68 +76,27 @@ export class OwnerDashboardComponent implements OnInit {
     });
   }
 
-    updateStatus(id: number, status: 'Confirmed' | 'Rejected') {
-    if (status === 'Rejected') {
-        if (!confirm('Reject and delete this booking?')) return;
-
-        this.updatingId = id;
-
-        this.http.delete(`/api/bookings/admin/${id}`).subscribe({
-        next: () => {
-            // remove from UI
-            this.bookings = this.bookings.filter(b => b.id !== id);
-
-            // refresh stats
-            this.http.get<any>('/api/bookings/admin/stats').subscribe(s => {
-            this.stats = {
-                totalBookings: s.totalBookings ?? 0,
-                pending: s.pending ?? 0,
-                confirmed: s.confirmed ?? 0
-            };
-            });
-
-            this.updatingId = null;
-            this.cdr.detectChanges();
-        },
-        error: (err) => {
-            console.error('Delete booking error', err);
-            this.updatingId = null;
-            alert(err?.error?.message || 'Failed to delete booking.');
-            this.cdr.detectChanges();
-        }
-        });
-
-        return;
-    }
-
-    // Confirm = keep your existing PUT logic
+  updateStatus(id: number, status: 'Confirmed' | 'Rejected') {
     this.updatingId = id;
+    this.cdr.detectChanges();
 
-    this.http.put(`/api/bookings/admin/${id}/status`, { status }).subscribe({
-        next: () => {
-        const b = this.bookings.find(x => x.id === id);
-        if (b) b.status = status;
-
-        this.http.get<any>('/api/bookings/admin/stats').subscribe(s => {
-            this.stats = {
-            totalBookings: s.totalBookings ?? 0,
-            pending: s.pending ?? 0,
-            confirmed: s.confirmed ?? 0
-            };
-        });
-
+    // ✅ Rejected = call your PUT status endpoint (backend already deletes on Rejected)
+    // (Cleaner than calling DELETE separately)
+    this.http.put(`${this.API}/api/bookings/admin/${id}/status`, { status }).subscribe({
+      next: () => {
         this.updatingId = null;
-        this.cdr.detectChanges();
-        },
-        error: (err) => {
+
+        // ✅ refresh bookings + stats in one place
+        this.load();
+      },
+      error: (err) => {
         console.error('Update status error', err);
         this.updatingId = null;
-        alert('Failed to update status.');
+        alert(err?.error?.message || 'Failed to update status.');
         this.cdr.detectChanges();
-        }
+      }
     });
-    }
-
+  }
 
   badgeClass(status: string) {
     switch (status) {
@@ -149,8 +108,8 @@ export class OwnerDashboardComponent implements OnInit {
 
   logout() {
     this.http.post(`${this.API}/api/admin/logout`, {}).subscribe({
-        complete: () => this.auth.logout()
+      complete: () => this.auth.logout()
     });
-    this.router.navigate(['/login']);
+    // remove this.router.navigate('/login') because auth.logout() already navigates
   }
 }

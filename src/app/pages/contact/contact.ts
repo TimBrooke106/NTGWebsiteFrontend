@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
@@ -11,9 +12,14 @@ import { GoogleMapsModule } from '@angular/google-maps';
   styleUrls: ['./contact.css']
 })
 export class Contact {
-  form;
+  sending = false;
+  success = false;
+  errorMsg = '';
 
-  constructor(private fb: FormBuilder) {
+  form;   // declare first
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    // ✅ initialize inside constructor
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -23,7 +29,11 @@ export class Contact {
     });
   }
 
-  center: google.maps.LatLngLiteral = { lat: 36.02773794229768, lng: 14.287999952044952 };
+  center: google.maps.LatLngLiteral = {
+    lat: 36.02773794229768,
+    lng: 14.287999952044952
+  };
+
   zoom = 12;
 
   marker = {
@@ -32,6 +42,20 @@ export class Contact {
 
   submit() {
     if (this.form.invalid) return;
-    console.log(this.form.value);
+
+    this.sending = true;
+
+    this.http.post('/api/contact', this.form.value).subscribe({
+      next: () => {
+        this.success = true;
+        this.form.reset();
+        this.sending = false;
+      },
+      error: (err) => {
+        this.errorMsg = err?.error?.message || 'Failed to send message.';
+        this.sending = false;
+      }
+    });
   }
 }
+

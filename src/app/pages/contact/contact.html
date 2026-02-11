@@ -94,42 +94,51 @@
         <div class="card border-0 shadow-sm">
           <div class="card-body p-4 p-lg-5">
             <h2 class="fw-bold mb-4">Send Us a Message</h2>
-
-            <form>
+            <form [formGroup]="form" (ngSubmit)="submit()">
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label fw-semibold">Name <span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg" placeholder="Your name" />
+                  <input formControlName="name" class="form-control form-control-lg" placeholder="Your name" />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg" placeholder="your.email@example.com" />
+                  <input formControlName="email" class="form-control form-control-lg" placeholder="your.email@example.com" />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label fw-semibold">Phone</label>
-                  <input class="form-control form-control-lg" placeholder="+356 9989 5509" />
+                  <input formControlName="phone" class="form-control form-control-lg" placeholder="+356 9989 5509" />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label fw-semibold">Subject <span class="text-danger">*</span></label>
-                  <input class="form-control form-control-lg" placeholder="How can we help?" />
+                  <input formControlName="subject" class="form-control form-control-lg" placeholder="How can we help?" />
                 </div>
 
                 <div class="col-12">
                   <label class="form-label fw-semibold">Message <span class="text-danger">*</span></label>
-                  <textarea class="form-control" rows="7" placeholder="Tell us about your project or inquiry..."></textarea>
+                  <textarea formControlName="message" class="form-control" rows="7"
+                    placeholder="Tell us about your project or inquiry..."></textarea>
                 </div>
 
                 <div class="col-12">
-                  <button type="button" class="btn btn-danger btn-lg px-4">
-                    Send Message
+                  <button type="submit" class="btn btn-danger btn-lg px-4" [disabled]="sending">
+                    {{ sending ? 'Sending...' : 'Send Message' }}
                     <span class="ms-2">✈️</span>
                   </button>
+
+                  <div *ngIf="success" class="alert alert-success mt-3 mb-0">
+                    Message sent successfully.
+                  </div>
+
+                  <div *ngIf="errorMsg" class="alert alert-danger mt-3 mb-0">
+                    {{ errorMsg }}
+                  </div>
                 </div>
               </div>
             </form>
+
           </div>
         </div>
       </div>
